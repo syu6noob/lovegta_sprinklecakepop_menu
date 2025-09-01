@@ -19,7 +19,7 @@ const progressBar = document.querySelector<HTMLDivElement>(".progress__bar");
 const stateText = document.querySelector<HTMLSpanElement>(".state__text");
 
 const slideCount = slides.length;
-const slideDuration = 12;
+const slideDuration = 15;
 
 let currentIndex = 0;
 
@@ -95,6 +95,10 @@ function setMute(state: boolean) {
 
 let isMuted: boolean = false;
 muteButtonElement.addEventListener("click", () => {
+  if (audioElement.paused) {
+    audioElement.play();
+  }
+
   isMuted = !isMuted;
   setMute(isMuted);
 });
