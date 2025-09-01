@@ -81,6 +81,7 @@ syncStart();
 // music
 
 const audioElement = document.getElementById("audio")! as HTMLAudioElement;
+audioElement.volume = 0.05;
 const muteButtonElement = document.getElementById("button--mute")!;
 
 function setMute(state: boolean) {
