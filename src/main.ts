@@ -19,7 +19,7 @@ const progressBar = document.querySelector<HTMLDivElement>(".progress__bar");
 const stateText = document.querySelector<HTMLSpanElement>(".state__text");
 
 const slideCount = slides.length;
-const slideDuration = 15;
+const slideDuration = 12;
 
 let currentIndex = 0;
 

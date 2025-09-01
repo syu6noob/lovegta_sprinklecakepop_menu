@@ -92,6 +92,10 @@ span {
   background: #B3E6ED;
 }
 
+#slide--5 {
+  background: #f7f7f8;
+}
+
 .slide__image {
   max-width: 100%;
   height: 100%;
