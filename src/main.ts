@@ -86,7 +86,7 @@ syncStart();
 // music
 const mainElement = document.querySelector("main")!;
 const audioElement = document.getElementById("audio")! as HTMLAudioElement;
-audioElement.volume = 0.1;
+audioElement.volume = 0.05;
 
 mainElement?.addEventListener("click", () => {
   audioElement.play().then(() => {
