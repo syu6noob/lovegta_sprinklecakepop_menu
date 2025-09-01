@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const loadingElement = document.getElementById("loading")!;
   setTimeout(() => {
     loadingElement.classList.add("loading--hide");
-  }, 2000)
+  }, 1500)
 });
 
 // slide
@@ -88,7 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
   audioElement.play();
 })
 
-
 function setMute(state: boolean) {
   muteButtonElement.dataset["muted"] = `${state}`;
   audioElement.muted = state;
@@ -99,5 +98,3 @@ muteButtonElement.addEventListener("click", () => {
   isMuted = !isMuted;
   setMute(isMuted);
 });
-
-
