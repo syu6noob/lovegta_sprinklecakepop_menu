@@ -93,17 +93,3 @@ muteButtonElement.addEventListener("click", () => {
   isMuted = !isMuted;
   setMute(isMuted);
 });
-
-// tamanuke
-
-const tamanukeSlideElement = document.getElementById("tamanuke");
-const tamanukeButtonElement = document.getElementById("button--tamanuke")!;
-tamanukeButtonElement.addEventListener("click", () => {
-  tamanukeSlideElement?.classList.toggle("slide-container--shown");
-  tamanukeSlideElement?.classList.toggle("slide-container--hidden");
-  if (tamanukeButtonElement.dataset["tamanuke"] === "true") {
-    tamanukeButtonElement.dataset["tamanuke"] = "false";
-  } else {
-    tamanukeButtonElement.dataset["tamanuke"] = "true";
-  }
-});
