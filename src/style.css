@@ -53,15 +53,17 @@ span {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  transition: opacity 1s ease;
+}
+
+.slide-container--shown {
   opacity: 1;
   visibility: visible;
-  transition: opacity 1s ease;
 }
 
 .slide-container--hidden {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 1s ease;
 }
 
 .slide {
@@ -204,4 +206,21 @@ main:hover .buttons {
 
 .button[data-muted="false"] .button--mute__icon {
   display: none;
+}
+
+
+.button[data-tamanuke="true"] .button--iru__icon {
+  display: block;
+}
+
+.button[data-tamanuke="true"] .button--tamanuke__icon {
+  display: none;
+}
+
+.button[data-tamanuke="false"] .button--iru__icon {
+  display: none;
+}
+
+.button[data-tamanuke="false"] .button--tamanuke__icon {
+  display: block;
 }
