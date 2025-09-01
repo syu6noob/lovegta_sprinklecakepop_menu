@@ -14,13 +14,14 @@ main {
 }
 
 h4 {
-  font-size: 2rem;
+  font-size: 3rem;
   color: #fbfeff;
 }
 
 span {
   color: #fbfeff;
   text-align: center;
+  font-size: 1.5rem;
 }
 
 .logo {
