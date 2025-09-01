@@ -83,6 +83,12 @@ syncStart();
 const audioElement = document.getElementById("audio")! as HTMLAudioElement;
 const muteButtonElement = document.getElementById("button--mute")!;
 
+document.addEventListener("DOMContentLoaded", () => {
+  audioElement.volume = 0.03;
+  audioElement.play();
+})
+
+
 function setMute(state: boolean) {
   muteButtonElement.dataset["muted"] = `${state}`;
   audioElement.muted = state;
@@ -93,3 +99,5 @@ muteButtonElement.addEventListener("click", () => {
   isMuted = !isMuted;
   setMute(isMuted);
 });
+
+
