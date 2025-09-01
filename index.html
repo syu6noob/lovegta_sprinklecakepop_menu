@@ -13,33 +13,7 @@
 </head>
 
 <body>
-  <main>
-    <div id="app" class="container">
-      <div class="slide" id="slide--1">
-        <img class="slide__image" id="slide__image--1" src="/menu_1.png" alt="メニュー1">
-      </div>
-      <div class="slide" id="slide--2">
-        <img class="slide__image" id="slide__image--2" src="/menu_2.png" alt="メニュー2">
-      </div>
-      <div class="slide" id="slide--3">
-        <img class="slide__image" id="slide__image--3" src="/menu_3.png" alt="メニュー3">
-      </div>
-      <div class="slide" id="slide--4">
-        <img class="slide__image" id="slide__image--4" src="/menu_4.png" alt="メニュー4">
-      </div>
-      <div class="state">
-        <span class="state__text"></span>
-      </div>
-    </div>
-    <div class="progress">
-      <div class="progress__bar"></div>
-    </div>
-    <audio autoplay id="audio" loop>
-      <source src="/bgm.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </main>
-  <div class="loading">
+  <div class="loading" id="loading">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500px" height="500px">
       <path
         d="M 197.467 490.18 C 174.564 487.885 97.733 421.38 97.2 357.913 C 96.969 331.206 96.942 319.538 109.45 319.538 C 178.977 325.765 245.853 325.544 293.157 320.697 C 329.787 316.945 369.382 299.295 367.603 293.191 C 366.522 289.482 348.186 299.747 321.542 305.834 C 288.366 313.413 249.672 321.738 117.89 307.21 C 112.552 306.622 100.354 300.779 100.259 291.786 C 100.053 272.214 131.115 235.811 140.409 231.028 C 148.038 227.102 155.295 240.472 159.581 253.572 C 163.996 267.065 161.242 273.891 166.795 273.797 C 172.413 273.701 190.541 250.536 191.067 234.18 C 191.443 222.49 191.889 215.002 193.491 213.134 C 195.81 210.429 202.597 210.075 209.093 209.149 C 225.073 206.872 228.115 208.414 225.981 258.548 C 224.381 284.148 221.857 287.818 230.533 287.513 C 253.215 286.715 275.025 237.885 275.997 220.846 C 276.306 215.437 277.397 212.591 281.252 211.36 C 288.816 208.944 296.321 213.449 296.601 216.273 C 297.128 221.595 295.6 244.313 288.667 256.58 C 278.533 274.18 281.444 279.604 286.212 280.616 C 302.671 284.11 336.582 256.161 342 245.38 C 347.142 235.148 351.067 232.58 364.4 247.513 C 378.8 262.98 387.333 280.046 387.333 293.38 C 387.333 301.38 392.133 305.113 406 307.78 C 427.333 311.513 446 331.78 446 349.913 C 446 366.446 427.867 388.313 404.4 398.446 C 393.733 403.78 368.133 425.113 347.333 446.446 C 322.754 471.836 307.295 490.609 284.162 491.953 C 251.569 493.847 235.278 493.968 197.467 490.18 Z" />
@@ -58,6 +32,52 @@
     </svg>
     <span>SprinkleCakePop</span>
   </div>
+  <main>
+    <div id="app" class="container">
+      <div class="slide-container">
+        <div class="slide" id="slide--1">
+          <img class="slide__image" id="slide__image--1" src="/menu_1.png" alt="メニュー1">
+        </div>
+        <div class="slide" id="slide--2">
+          <img class="slide__image" id="slide__image--2" src="/menu_2.png" alt="メニュー2">
+        </div>
+        <div class="slide" id="slide--3">
+          <img class="slide__image" id="slide__image--3" src="/menu_3.png" alt="メニュー3">
+        </div>
+        <div class="slide" id="slide--4">
+          <img class="slide__image" id="slide__image--4" src="/menu_4.png" alt="メニュー4">
+        </div>
+        <div class="state">
+          <span class="state__text"></span>
+        </div>
+      </div>
+      <div class="slide-container">
+        <span>
+          現在たまぬけ中です。お手数ですがしばらくお待ちください。
+        </span>
+      </div>
+      <div class="buttons">
+        <button id="button--mute" class="button" data-muted="false">
+          <svg class="button--mute__icon" xmlns="http://www.w3.org/2000/svg" width="576" height="512" viewBox="0 0 576 512">
+            <path
+              d="M48 352h48l134.1 119.2c6.4 5.7 14.6 8.8 23.1 8.8c19.2 0 34.8-15.6 34.8-34.8V66.8c0-19.2-15.6-34.8-34.8-34.8c-8.5 0-16.7 3.1-23.1 8.8L96 160H48c-26.5 0-48 21.5-48 48v96c0 26.5 21.5 48 48 48m319-177c-9.4 9.4-9.4 24.6 0 33.9l47 47l-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47l47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47l47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47l-47-47c-9.4-9.4-24.6-9.4-33.9 0" />
+          </svg>
+          <svg class="button--unmute__icon" xmlns="http://www.w3.org/2000/svg" width="640" height="512" viewBox="0 0 640 512">
+            <path
+              d="M533.6 32.5c-10.3-8.4-25.4-6.8-33.8 3.5s-6.8 25.4 3.5 33.8c54.2 44 88.7 111 88.7 186.2s-34.5 142.2-88.7 186.3c-10.3 8.4-11.8 23.5-3.5 33.8s23.5 11.8 33.8 3.5C598.5 426.7 640 346.2 640 256S598.5 85.2 533.6 32.5M473.1 107c-10.3-8.4-25.4-6.8-33.8 3.5s-6.8 25.4 3.5 33.8C475.3 170.7 496 210.9 496 256s-20.7 85.3-53.2 111.8c-10.3 8.4-11.8 23.5-3.5 33.8s23.5 11.8 33.8 3.5c43.2-35.2 70.9-88.9 70.9-149s-27.7-113.8-70.9-149zm-60.5 74.5c-10.3-8.4-25.4-6.8-33.8 3.5s-6.8 25.4 3.5 33.8C393.1 227.6 400 241 400 256s-6.9 28.4-17.7 37.3c-10.3 8.4-11.8 23.5-3.5 33.8s23.5 11.8 33.8 3.5c21.5-17.7 35.4-44.5 35.4-74.6s-13.9-56.9-35.4-74.5M80 352h48l134.1 119.2c6.4 5.7 14.6 8.8 23.1 8.8c19.2 0 34.8-15.6 34.8-34.8V66.8c0-19.2-15.6-34.8-34.8-34.8c-8.5 0-16.7 3.1-23.1 8.8L128 160H80c-26.5 0-48 21.5-48 48v96c0 26.5 21.5 48 48 48" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="progress__bar"></div>
+    </div>
+    <audio autoplay id="audio" loop>
+      <source src="/bgm.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+  </main>
   <script type="module" src="/src/main.ts"></script>
 </body>
 

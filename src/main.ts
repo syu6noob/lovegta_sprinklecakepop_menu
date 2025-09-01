@@ -2,18 +2,16 @@ import "./style.css"
 import { gsap } from "gsap";
 
 // Loading
+
 document.addEventListener("DOMContentLoaded", () => {
+  const loadingElement = document.getElementById("loading")!;
   setTimeout(() => {
-    gsap.to(".loading", {
-      duration: 1,
-      opacity: 0,
-      scale: 10,
-      ease: "power2.inOut"
-    });
-  }, 1000)
+    loadingElement.classList.add("loading--hide");
+  }, 2000)
 });
 
-// Slide
+// slide
+
 const isProgressBarEnabled = true;
 
 const slides = document.querySelectorAll<HTMLDivElement>(".slide");
@@ -25,7 +23,6 @@ const slideDuration = 15;
 
 let currentIndex = 0;
 
-// スライドをすべて非表示に
 gsap.set(slides, { autoAlpha: 0 });
 
 function updateStateText(index: number) {
@@ -41,10 +38,8 @@ function syncStart() {
 
   const elapsed = (seconds % slideDuration) + millSeconds / 1000;
 
-  // 現在のスライド番号
   currentIndex = Math.floor(seconds / slideDuration) % slideCount;
 
-  // スライド表示
   gsap.set(slides[currentIndex], { autoAlpha: 1 });
   updateStateText(currentIndex);
 
@@ -84,14 +79,21 @@ function nextSlide() {
 syncStart();
 
 // music
-const mainElement = document.querySelector("main")!;
+
 const audioElement = document.getElementById("audio")! as HTMLAudioElement;
 audioElement.volume = 0.05;
 
-mainElement?.addEventListener("click", () => {
-  audioElement.play().then(() => {
-    console.log("音楽再生開始！");
-  }).catch((err) => {
-    console.error("音楽が再生できませんでした:", err);
-  });
+// buttons
+
+const muteButtonElement = document.getElementById("button--mute")!;
+
+function setMute(state: boolean) {
+  muteButtonElement.dataset["muted"] = `${state}`;
+  audioElement.muted = state;
+}
+
+let isMuted: boolean = false;
+muteButtonElement?.addEventListener("click", () => {
+  isMuted = !isMuted;
+  setMute(isMuted);
 });
