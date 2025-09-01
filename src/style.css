@@ -95,6 +95,7 @@ main {
   align-items: center;
   background: #333;
   gap: 3rem;
+  pointer-events: none;
   z-index: 100;
 }
 

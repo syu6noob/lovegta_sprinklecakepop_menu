@@ -89,5 +89,9 @@ const audioElement = document.getElementById("audio")! as HTMLAudioElement;
 audioElement.volume = 0.25;
 
 mainElement?.addEventListener("click", () => {
-  audioElement.play();
+  audioElement.play().then(() => {
+    console.log("音楽再生開始！");
+  }).catch((err) => {
+    console.error("音楽が再生できませんでした:", err);
+  });
 });
