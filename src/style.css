@@ -34,6 +34,8 @@ span {
   fill: #fbfeff;
 }
 
+/* ==================== */
+
 .container {
   position: relative;
   width: 100%;
@@ -92,6 +94,8 @@ span {
   object-fit: contain;
 }
 
+/* ==================== */
+
 .state {
   position: absolute;
   left: 1rem;
@@ -106,6 +110,8 @@ span {
   font-size: 2rem;
   color: #fbfeff;
 }
+
+/* ==================== */
 
 .progress {
   position: relative;
@@ -122,6 +128,8 @@ span {
   width: 0px;
   background: #fab73b;
 }
+
+/* ==================== */
 
 .loading {
   position: fixed;
@@ -156,6 +164,8 @@ span {
   font-size: 4rem;
   color: #eee;
 }
+
+/* ==================== */
 
 .buttons {
   position: absolute;
