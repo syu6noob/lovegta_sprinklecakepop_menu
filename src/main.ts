@@ -21,7 +21,9 @@ const stateText = document.querySelector<HTMLSpanElement>(".state__text");
 const slideCount = slides.length;
 const slideDuration = 15;
 
-let currentIndex = 0;
+const debugSlideCount: number = -1;
+
+let currentIndex = debugSlideCount === -1 ? 0 : debugSlideCount;
 
 gsap.set(slides, { autoAlpha: 0 });
 
@@ -38,7 +40,7 @@ function syncStart() {
 
   const elapsed = (seconds % slideDuration) + millSeconds / 1000;
 
-  currentIndex = Math.floor(seconds / slideDuration) % slideCount;
+  currentIndex = debugSlideCount === -1 ? Math.floor(seconds / slideDuration) % slideCount : debugSlideCount;
 
   gsap.set(slides[currentIndex], { autoAlpha: 1 });
   updateStateText(currentIndex);
@@ -57,7 +59,7 @@ function syncStart() {
 }
 
 function nextSlide() {
-  const nextIndex = (currentIndex + 1) % slideCount;
+  const nextIndex = debugSlideCount === -1 ? (currentIndex + 1) % slideCount : debugSlideCount;
 
   gsap.to(slides[currentIndex], { autoAlpha: 0, duration: 1 });
   gsap.to(slides[nextIndex], { autoAlpha: 1, duration: 1 });

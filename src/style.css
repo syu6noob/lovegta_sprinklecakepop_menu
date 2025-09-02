@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", "M PLUS 1p", sans-serif;
 }
 
 html, body {
@@ -19,8 +19,6 @@ h4 {
 }
 
 span {
-  color: #fbfeff;
-  text-align: center;
   font-size: 1.5rem;
 }
 
@@ -64,34 +62,70 @@ span {
   position: absolute;
   width: 100%;
   height: 100%;
+}
+
+.slide--1 {
+  background: #BBf5ED;
   justify-content: center;
   align-items: center;
 }
 
-#slide--1 {
+.slide--2 {
   background: #BBf5ED;
+  justify-content: center;
+  align-items: center;
 }
 
-#slide--2 {
+.slide--3 {
   background: #BBf5ED;
+  justify-content: center;
+  align-items: center;
 }
 
-#slide--3 {
-  background: #BBf5ED;
-}
-
-#slide--4 {
-  background: #B3E6ED;
-}
-
-#slide--5 {
+.slide--4 {
   background: #f7f7f8;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.slide--4 span {
+  color: #8963db;
+  font-weight: 700;
+}
+
+.slide--5 {
+  background: #d4f1fa;
+  color: #052833;
+  justify-content: center;
+  gap: 3rem;
 }
 
 .slide__image {
   max-width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.slide__content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 1rem;
+}
+
+.slide__content span {
+  font-size: 1.5rem;
+}
+
+.slide__content h5 {
+  font-size: 3rem;
+  margin-bottom: .5rem;
+}
+
+.slide__content p {
+  font-size: 1.5rem;
 }
 
 /* ==================== */
