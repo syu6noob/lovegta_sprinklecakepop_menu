@@ -21,7 +21,7 @@ const stateText = document.querySelector<HTMLSpanElement>(".state__text");
 const slideCount = slides.length;
 const slideDuration = 15;
 
-const debugSlideCount: number = 4;
+const debugSlideCount: number = -1;
 
 let currentIndex = debugSlideCount === -1 ? 0 : debugSlideCount;
 
