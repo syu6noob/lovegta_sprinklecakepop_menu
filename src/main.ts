@@ -87,7 +87,15 @@ const muteButtonElement = document.getElementById("button--mute")!;
 
 document.addEventListener("DOMContentLoaded", () => {
   audioElement.volume = 0.03;
-  audioElement.play();
+  setTimeout(() => {
+    if (!audioElement.paused) {
+      return;
+    }
+    audioElement.play().catch((e) => {
+      console.log("Autoplay was prevented:", e);
+      setMute(true);
+    });
+  }, 1000)
 })
 
 function setMute(state: boolean) {
