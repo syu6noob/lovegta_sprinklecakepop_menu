@@ -119,14 +119,19 @@ muteButtonElement.addEventListener("click", () => {
   setMute(isMuted);
 });
 
+// debug
 
-// デバッグフラグ
-const isDebugEnabled = true;
-
-// デバッグ用の表示領域を作成
+// 追加変数（既存の定義と同じファイルのトップ付近に置く）
+const debugButtonElement = document.getElementById("button--debug")! as HTMLButtonElement;
+let isDebugMode: boolean = false;
 let debugPanel: HTMLDivElement | null = null;
-if (isDebugEnabled) {
+
+// デバッグパネルを生成する関数
+function createDebugPanel() {
+  if (debugPanel) return debugPanel;
   debugPanel = document.createElement("div");
+  debugPanel.id = "debug-panel";
+  // インラインスタイルで簡単に配置（必要なら CSS に移してください）
   debugPanel.style.position = "fixed";
   debugPanel.style.bottom = "0";
   debugPanel.style.left = "0";
@@ -137,24 +142,57 @@ if (isDebugEnabled) {
   debugPanel.style.color = "#0f0";
   debugPanel.style.fontFamily = "monospace";
   debugPanel.style.fontSize = "12px";
-  debugPanel.style.padding = "4px";
+  debugPanel.style.padding = "6px";
   debugPanel.style.zIndex = "9999";
+  debugPanel.style.boxSizing = "border-box";
+  debugPanel.style.backdropFilter = "blur(4px)";
+  debugPanel.style.borderTop = "1px solid rgba(255,255,255,0.06)";
   document.body.appendChild(debugPanel);
+  return debugPanel;
 }
 
-// メッセージ受信処理
-window.addEventListener("message", (e) => {
-  if (e.data.type === "setVolume") {
-    audioElement.volume = 0.03 * e.data.value / 100;
+function destroyDebugPanel() {
+  if (!debugPanel) return;
+  debugPanel.remove();
+  debugPanel = null;
+}
+
+// デバッグモードの表示切替（ボタン UI の dataset も更新）
+function setDebug(state: boolean) {
+  isDebugMode = state;
+  debugButtonElement.dataset["debug"] = `${state}`;
+  if (state) {
+    createDebugPanel();
+    // 視覚的に押された状態を示すならクラスを付与しても良い
+    debugButtonElement.classList.add("is-active");
+  } else {
+    destroyDebugPanel();
+    debugButtonElement.classList.remove("is-active");
   }
+}
 
-  // デバッグモードなら受信内容を表示
-  if (isDebugEnabled && debugPanel) {
+// ボタンクリックでトグル（mute ボタンと同様の扱い）
+debugButtonElement.addEventListener("click", () => {
+  setDebug(!isDebugMode);
+});
+
+window.addEventListener("message", (e) => {
+  // --- デバッグ表示 ---
+  if (isDebugMode) {
+    const panel = debugPanel ?? createDebugPanel();
     const pre = document.createElement("pre");
+    pre.style.margin = "4px 0";
+    pre.style.whiteSpace = "pre-wrap";
+    pre.style.wordBreak = "break-word";
     pre.textContent = `[${new Date().toLocaleTimeString()}] ${JSON.stringify(e.data, null, 2)}`;
-    debugPanel.appendChild(pre);
+    panel.appendChild(pre);
+    // 最新ログへ自動スクロール
+    panel.scrollTop = panel.scrollHeight;
 
-    // スクロールを最新に追従
-    debugPanel.scrollTop = debugPanel.scrollHeight;
+    // ログが肥大化してきたら自動で削る（任意）
+    const maxEntries = 200;
+    while (panel.childElementCount > maxEntries) {
+      panel.removeChild(panel.firstElementChild!);
+    }
   }
 });

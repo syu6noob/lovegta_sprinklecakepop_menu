@@ -208,8 +208,8 @@ span {
 
 .buttons {
   position: absolute;
+  top: 1rem;
   right: 1rem;
-  bottom: 1rem;
   display: flex;
   z-index: 10;
   gap: 1rem;
