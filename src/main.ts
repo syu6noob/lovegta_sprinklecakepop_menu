@@ -86,7 +86,7 @@ const audioElement = document.getElementById("audio")! as HTMLAudioElement;
 const muteButtonElement = document.getElementById("button--mute")!;
 
 document.addEventListener("DOMContentLoaded", () => {
-  audioElement.volume = 0.03;
+  audioElement.volume = 0;
   setTimeout(() => {
     if (!audioElement.paused) {
       return;
@@ -97,6 +97,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, 1000)
 })
+
+window.addEventListener("message", (e) => {
+  if (e.data.type === "setVolume") {
+    audioElement.volume = 0.03 * e.data.value / 100;
+  }
+});
 
 function setMute(state: boolean) {
   muteButtonElement.dataset["muted"] = `${state}`;
