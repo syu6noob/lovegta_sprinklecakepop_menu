@@ -115,17 +115,18 @@ muteButtonElement.addEventListener("click", () => {
 
 window.addEventListener("message", (e) => {
   const msg = e.data;
+  let newVolume: number = 0;
 
   if (msg.data && msg.setVolume) {
-    let newVolume = 0.03 * Number(msg.data) / 100;
+    newVolume = 0.03 * Number(msg.data) / 100;
 
     appendDebugLog({
       "newVolume": newVolume
     });
 
     if (newVolume > 0.03) newVolume = 0.03;
-    audioElement.volume = newVolume;
   }
+  audioElement.volume = newVolume;
 });
 
 // debug
