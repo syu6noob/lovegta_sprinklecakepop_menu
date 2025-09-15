@@ -118,3 +118,43 @@ muteButtonElement.addEventListener("click", () => {
   isMuted = !isMuted;
   setMute(isMuted);
 });
+
+
+// デバッグフラグ
+const isDebugEnabled = true;
+
+// デバッグ用の表示領域を作成
+let debugPanel: HTMLDivElement | null = null;
+if (isDebugEnabled) {
+  debugPanel = document.createElement("div");
+  debugPanel.style.position = "fixed";
+  debugPanel.style.bottom = "0";
+  debugPanel.style.left = "0";
+  debugPanel.style.width = "100%";
+  debugPanel.style.maxHeight = "40vh";
+  debugPanel.style.overflowY = "auto";
+  debugPanel.style.background = "rgba(0,0,0,0.8)";
+  debugPanel.style.color = "#0f0";
+  debugPanel.style.fontFamily = "monospace";
+  debugPanel.style.fontSize = "12px";
+  debugPanel.style.padding = "4px";
+  debugPanel.style.zIndex = "9999";
+  document.body.appendChild(debugPanel);
+}
+
+// メッセージ受信処理
+window.addEventListener("message", (e) => {
+  if (e.data.type === "setVolume") {
+    audioElement.volume = 0.03 * e.data.value / 100;
+  }
+
+  // デバッグモードなら受信内容を表示
+  if (isDebugEnabled && debugPanel) {
+    const pre = document.createElement("pre");
+    pre.textContent = `[${new Date().toLocaleTimeString()}] ${JSON.stringify(e.data, null, 2)}`;
+    debugPanel.appendChild(pre);
+
+    // スクロールを最新に追従
+    debugPanel.scrollTop = debugPanel.scrollHeight;
+  }
+});
