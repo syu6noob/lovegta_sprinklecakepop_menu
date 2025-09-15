@@ -117,7 +117,7 @@ window.addEventListener("message", (e) => {
   const msg = e.data;
   let newVolume: number = 0;
 
-  if (msg.data && msg.setVolume) {
+  if (msg.data) {
     newVolume = 0.03 * Number(msg.data) / 100;
 
     appendDebugLog({
@@ -125,6 +125,10 @@ window.addEventListener("message", (e) => {
     });
 
     if (newVolume > 0.03) newVolume = 0.03;
+  } else {
+    appendDebugLog({
+      "newVolume": "no volume fixed"
+    });
   }
   audioElement.volume = newVolume;
 });
