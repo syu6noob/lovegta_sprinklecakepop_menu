@@ -118,6 +118,11 @@ window.addEventListener("message", (e) => {
 
   if (msg.data && msg.setVolume === true) {
     let newVolume = 0.03 * Number(msg.data) / 100;
+
+    appendDebugLog({
+      "newVolume": newVolume
+    });
+    
     if (newVolume > 0.03) newVolume = 0.03;
     audioElement.volume = newVolume;
   }
@@ -175,6 +180,27 @@ function setDebug(state: boolean) {
   }
 }
 
+function appendDebugLog(data: unknown) {
+  if (!isDebugMode) return;
+
+  const panel = debugPanel ?? createDebugPanel();
+
+  const pre = document.createElement("pre");
+  pre.style.margin = "4px 0";
+  pre.style.whiteSpace = "pre-wrap";
+  pre.style.wordBreak = "break-word";
+  pre.textContent = `[${new Date().toLocaleTimeString()}] ${JSON.stringify(data, null, 2)}`;
+
+  panel.appendChild(pre);
+  panel.scrollTop = panel.scrollHeight;
+
+  // --- ログ肥大化対策 ---
+  const maxEntries = 200;
+  while (panel.childElementCount > maxEntries) {
+    panel.removeChild(panel.firstElementChild!);
+  }
+}
+
 // ボタンクリックでトグル（mute ボタンと同様の扱い）
 debugButtonElement.addEventListener("click", () => {
   setDebug(!isDebugMode);
@@ -182,21 +208,5 @@ debugButtonElement.addEventListener("click", () => {
 
 window.addEventListener("message", (e) => {
   // --- デバッグ表示 ---
-  if (isDebugMode) {
-    const panel = debugPanel ?? createDebugPanel();
-    const pre = document.createElement("pre");
-    pre.style.margin = "4px 0";
-    pre.style.whiteSpace = "pre-wrap";
-    pre.style.wordBreak = "break-word";
-    pre.textContent = `[${new Date().toLocaleTimeString()}] ${JSON.stringify(e.data, null, 2)}`;
-    panel.appendChild(pre);
-    // 最新ログへ自動スクロール
-    panel.scrollTop = panel.scrollHeight;
-
-    // ログが肥大化してきたら自動で削る（任意）
-    const maxEntries = 200;
-    while (panel.childElementCount > maxEntries) {
-      panel.removeChild(panel.firstElementChild!);
-    }
-  }
+  appendDebugLog(e.data);
 });
