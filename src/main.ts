@@ -118,13 +118,13 @@ window.addEventListener("message", (e) => {
   let newVolume: number = 0;
 
   if (msg.data && msg.setVolume) {
-    newVolume = 0.03 * Number(msg.data) / 100;
+    newVolume = 0.06 * Number(msg.data) / 100;
 
     appendDebugLog({
       "newVolume": newVolume
     });
 
-    if (newVolume > 0.03) newVolume = 0.03;
+    if (newVolume > 0.06) newVolume = 0.06;
   } else {
     newVolume = 0;
     appendDebugLog({
