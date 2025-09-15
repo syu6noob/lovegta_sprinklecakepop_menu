@@ -127,8 +127,11 @@ window.addEventListener("message", (e) => {
     if (newVolume > 0.03) newVolume = 0.03;
   } else {
     newVolume = 0;
+    appendDebugLog({
+      "newVolume": "not adjusted"
+    });
   }
-  
+
   audioElement.volume = newVolume;
 });
 
